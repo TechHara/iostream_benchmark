@@ -4,10 +4,6 @@
 #include <algorithm>
 #include <vector>
 
-int comp(const void* a, const void* b) {
-  return std::strcmp(*(const char**)a, *(const char**)b);
-}
-
 /**
  * sort
  * Usage: io [INPUT [OUTPUT]]
@@ -35,7 +31,7 @@ int main(int argc, const char** argv) {
   }
 
   std::sort(std::begin(lines), std::end(lines), [](char* a, char* b) {
-    return std::strcmp(a, b) < 0;
+    return std::strcmp(a,b) < 0;
   });
 
   for (auto &line : lines) {
