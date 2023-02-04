@@ -4,6 +4,10 @@
 #include <algorithm>
 #include <vector>
 
+int comp(char** a, char** b) {
+  return std::strcmp(*a, *b);
+}
+
 /**
  * sort
  * Usage: io [INPUT [OUTPUT]]
@@ -30,9 +34,7 @@ int main(int argc, const char** argv) {
     lines.push_back(line);
   }
 
-  std::sort(std::begin(lines), std::end(lines), [](char* a, char* b) {
-    return std::strcmp(a,b) < 0;
-  });
+  qsort(lines.data(), lines.size(), sizeof(*lines.data()), reinterpret_cast<int (*)(const void *, const void *)>(comp));
 
   for (auto &line : lines) {
     fprintf(ofs, "%s", line);
